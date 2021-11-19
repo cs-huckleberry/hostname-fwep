@@ -15,7 +15,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "fwep_server" {
-  ami           = "ami-06391d741144b83c2"
+  ami           = "ami-0142f6ace1c558c7d"
   instance_type = "t3.micro"
 
   tags = {

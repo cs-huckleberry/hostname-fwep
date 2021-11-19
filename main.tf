@@ -14,7 +14,7 @@ provider "aws" {
   region  = "us-west-2"
 }
 
-resource "aws_instance" "app_server" {
+resource "aws_instance" "fwep_server" {
   ami           = "ami-06391d741144b83c2"
   instance_type = "t3.micro"
 

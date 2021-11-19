@@ -17,6 +17,7 @@ provider "aws" {
 resource "aws_instance" "fwep_server" {
   ami           = "ami-0142f6ace1c558c7d"
   instance_type = "t3.micro"
+  subnet_id       = aws_subnet.main.id
 
   tags = {
     Name = "hostname-test"

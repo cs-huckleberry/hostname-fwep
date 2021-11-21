@@ -23,3 +23,4 @@ resource "aws_instance" "fwep_server" {
     Name = "hostname-test"
   }
 }
+# need to figure out the mechanism to pull the secondary IP and make it in to the hostname

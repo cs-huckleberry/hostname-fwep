@@ -15,14 +15,15 @@ provider "aws" {
 }
 
 resource "aws_instance" "fwep_server" {
-  ami           = "ami-0142f6ace1c558c7d"
-  instance_type = "t3.micro"
-  subnet_id     = aws_subnet.main.id
-  key_name      = "ec2_oregon"
+  ami                    = "ami-0142f6ace1c558c7d"
+  instance_type          = "t3.micro"
+  subnet_id              = aws_subnet.main.id
+  key_name               = "ec2_oregon"
+  vpc_security_group_ids = ["sg-0e99b28f6a4c1c99f"]
 
   user_data = <<EOF
     #cloud-config
-       hostname = var.secondary_ip_addr
+       hostname = "this-works"
     
   EOF
   tags = {

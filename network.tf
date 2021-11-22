@@ -1,6 +1,7 @@
 resource "aws_network_interface" "test" {
   subnet_id = aws_subnet.main.id
   #private_ips     = ["10.0.0.50"]
+  security_groups = ["sg-0e99b28f6a4c1c99f"]
 
   attachment {
     instance     = aws_instance.fwep_server.id
@@ -24,5 +25,5 @@ resource "aws_vpc" "main" {
   }
 }
 resource "aws_internet_gateway" "fwep_igw" {
-    vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.main.id
 }

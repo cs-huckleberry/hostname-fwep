@@ -17,10 +17,15 @@ provider "aws" {
 resource "aws_instance" "fwep_server" {
   ami           = "ami-0142f6ace1c558c7d"
   instance_type = "t3.micro"
-  subnet_id       = aws_subnet.main.id
+  subnet_id     = aws_subnet.main.id
+  key_name      = "ec2_oregon"
 
+  user_data = <<EOF
+    #cloud-config
+       hostname = var.secondary_ip_addr
+    
+  EOF
   tags = {
     Name = "hostname-test"
   }
 }
-# need to figure out the mechanism to pull the secondary IP and make it in to the hostname

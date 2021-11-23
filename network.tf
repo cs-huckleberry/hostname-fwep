@@ -1,4 +1,8 @@
-resource "aws_network_interface" "test" {
+resource "aws_network_interface" "eni0" {
+  subnet_id       = aws_subnet.main.id
+  security_groups = ["sg-0e99b28f6a4c1c99f"]
+}
+resource "aws_network_interface" "eni1" {
   subnet_id       = aws_subnet.main.id
   security_groups = ["sg-0e99b28f6a4c1c99f"]
 }

@@ -1,7 +1,7 @@
 resource "aws_network_interface" "test" {
-  subnet_id = aws_subnet.main.id
+  subnet_id       = aws_subnet.main.id
   security_groups = ["sg-0e99b28f6a4c1c99f"]
-  }
+}
 
 resource "aws_subnet" "main" {
   vpc_id     = aws_vpc.main.id

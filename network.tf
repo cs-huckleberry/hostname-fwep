@@ -1,13 +1,8 @@
 resource "aws_network_interface" "test" {
   subnet_id = aws_subnet.main.id
-  #private_ips     = ["10.0.0.50"]
   security_groups = ["sg-0e99b28f6a4c1c99f"]
-
-  attachment {
-    instance     = aws_instance.fwep_server.id
-    device_index = 1
   }
-}
+
 resource "aws_subnet" "main" {
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.0.0/24"

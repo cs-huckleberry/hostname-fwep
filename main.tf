@@ -36,10 +36,14 @@ resource "aws_instance" "fwep_server" {
 
   user_data = <<EOF
     #!/bin/bash
-    IP=`ifconfig eth1|grep "inet "|awk -F " " '{print $2}'`
-    newhostname=$${IP//[.]/-}
-    sudo sysctl kernel.hostname=$newhostname
-    
+    ONLINE=`ifconfig eth1|grep "flags"|awk ' /UP/ {print "UP";}'`
+    if [[ $ONLINE == UP ]]
+    then
+      eni1=`ifconfig eth1|grep "inet "|awk -F " " '{print $2}'`
+      hostnamectl set-hostname `echo $eni1`
+    else
+      echo "Secondary ENI not present"
+    fi
   EOF
   tags = {
     Name = "hostname-test"
@@ -48,5 +52,5 @@ resource "aws_instance" "fwep_server" {
 
 resource "aws_eip" "lb" {
   network_interface = aws_network_interface.eni0.id
-  vpc      = true
+  vpc               = true
 }

@@ -42,7 +42,7 @@ resource "aws_instance" "fwep_server" {
       eni1=`ifconfig eth1|grep "inet "|awk -F " " '{print $2}'| sed s/"\."/-/g`
       hostnamectl set-hostname `echo $eni1`
     else
-      echo "Secondary ENI not present"
+      :
     fi
   EOF
   tags = {
